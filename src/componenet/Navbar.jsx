@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Navbar({ setCategory }) {
+function Navbar({ setCategory, categories }) {
   return (
     <>
     <div className='container'>
@@ -11,26 +11,13 @@ function Navbar({ setCategory }) {
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <div className="nav-link active" aria-current="page" onClick={() => setCategory('all')} style={{cursor: 'pointer'}}>Home</div>
-        </li>
-        <li className="nav-item">
-          <div className="nav-link" onClick={() => setCategory('groceries')} style={{cursor: 'pointer'}}>Groceries</div>
-        </li>
-        <li className="nav-item">
-          <div className="nav-link" onClick={() => setCategory('electronics')} style={{cursor: 'pointer'}}>Electronics</div>
-        </li>
-        <li className="nav-item">
-          <div className="nav-link" onClick={() => setCategory('clothing')} style={{cursor: 'pointer'}}>Clothing</div>
-        </li>
-        <li className="nav-item">
-          <div className="nav-link" onClick={() => setCategory('beauty')} style={{cursor: 'pointer'}}>Beauty</div>
-        </li>
-        <li className="nav-item">
-          <div className="nav-link" onClick={() => setCategory('health')} style={{cursor: 'pointer'}}>Health</div>
-        </li>
-      </ul>
+      <select className="form-select" onChange={(e) => setCategory(e.target.value)} style={{width: 'auto'}}>
+        {categories.map(category => (
+          <option key={category} value={category}>
+            {category.charAt(0).toUpperCase() + category.slice(1)}
+          </option>
+        ))}
+      </select>
     </div>
   </div>
 </nav>
